@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Farh Marketer — Grow Bold. Market Smart.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --indigo:#4F46E5;
+    --indigo-dark:#3730A3;
+    --orange:#FF6B35;
+    --lime:#B6F500;
+    --dark:#0F172A;
+    --light:#F8FAFC;
+    --text:#1E293B;
+    --muted:#64748B;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Inter',sans-serif;color:var(--text);background:var(--light);overflow-x:hidden;}
+  h1,h2,h3{font-family:'Sora',sans-serif;}
+  a{text-decoration:none;color:inherit;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px;}
+
+  /* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:22px 0;transition:.35s ease;}
+  nav.scrolled{padding:12px 0;background:rgba(15,23,42,.85);backdrop-filter:blur(10px);box-shadow:0 4px 24px rgba(0,0,0,.15);}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;}
+  .logo{font-family:'Sora',sans-serif;font-weight:800;font-size:20px;color:#fff;display:flex;align-items:center;gap:8px;}
+  .logo .dot{width:9px;height:9px;border-radius:50%;background:var(--orange);display:inline-block;}
+  .nav-links{display:flex;gap:32px;list-style:none;}
+  .nav-links a{color:#E2E8F0;font-size:14px;font-weight:500;position:relative;}
+  .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--orange);transition:.25s;}
+  .nav-links a:hover::after{width:100%;}
+  .nav-cta{background:var(--orange);color:#fff;padding:10px 22px;border-radius:8px;font-weight:600;font-size:14px;transition:.25s;}
+  .nav-cta:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(255,107,53,.4);}
+
+  /* HERO */
+  .hero{position:relative;min-height:100vh;background:var(--dark);display:flex;align-items:center;overflow:hidden;padding-top:80px;}
+  .blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.55;animation:float 12s ease-in-out infinite;}
+  .blob1{width:520px;height:520px;background:radial-gradient(circle,var(--indigo),transparent 70%);top:-120px;right:-80px;animation-delay:0s;}
+  .blob2{width:420px;height:420px;background:radial-gradient(circle,var(--orange),transparent 70%);bottom:-140px;left:-100px;animation-delay:-6s;}
+  @keyframes float{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(30px,-40px) scale(1.08);}}
+  .hero-inner{position:relative;z-index:2;text-align:center;width:100%;}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:var(--lime);font-size:13px;font-weight:600;padding:8px 16px;border-radius:999px;margin-bottom:28px;opacity:0;animation:fadeUp .8s .1s forwards;}
+  .hero h1{font-size:clamp(38px,6vw,68px);font-weight:800;color:#fff;line-height:1.08;letter-spacing:-1px;max-width:900px;margin:0 auto 22px;opacity:0;animation:fadeUp .8s .25s forwards;}
+  .hero h1 span{color:var(--orange);}
+  .hero p{font-size:18px;color:#CBD5E1;max-width:560px;margin:0 auto 40px;opacity:0;animation:fadeUp .8s .4s forwards;}
+  .hero-ctas{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;opacity:0;animation:fadeUp .8s .55s forwards;}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+  .btn-primary{background:var(--orange);color:#fff;padding:16px 30px;border-radius:10px;font-weight:600;font-size:15px;transition:.25s;display:inline-block;}
+  .btn-primary:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(255,107,53,.4);}
+  .btn-outline{border:1px solid rgba(255,255,255,.3);color:#fff;padding:16px 30px;border-radius:10px;font-weight:600;font-size:15px;transition:.25s;display:inline-block;}
+  .btn-outline:hover{background:rgba(255,255,255,.08);border-color:#fff;}
+
+  /* TICKER — signature element: live campaign metrics strip */
+  .ticker{position:relative;z-index:2;margin-top:70px;border-top:1px solid rgba(255,255,255,.1);border-bottom:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.03);overflow:hidden;padding:14px 0;}
+  .ticker-track{display:flex;gap:48px;white-space:nowrap;animation:scroll 22s linear infinite;width:max-content;}
+  .ticker-item{display:flex;align-items:center;gap:8px;font-size:13px;color:#CBD5E1;font-family:'Inter',monospace;}
+  .ticker-item b{color:#fff;font-weight:600;}
+  .up{color:var(--lime);}
+  .down{color:#FCA5A5;}
+  @keyframes scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+  /* STATS */
+  .stats{background:var(--dark);padding:70px 0 90px;}
+  .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center;}
+  .stat-num{font-family:'Sora',sans-serif;font-size:42px;font-weight:800;color:#fff;}
+  .stat-num span{color:var(--orange);}
+  .stat-label{font-size:13px;color:#94A3B8;margin-top:6px;text-transform:uppercase;letter-spacing:.06em;}
+
+  /* SECTION HEADER */
+  .section{padding:100px 0;}
+  .sec-head{text-align:center;max-width:600px;margin:0 auto 56px;}
+  .sec-eyebrow{color:var(--orange);font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px;display:block;}
+  .sec-head h2{font-size:38px;font-weight:800;letter-spacing:-.5px;color:var(--dark);}
+  .sec-head p{color:var(--muted);margin-top:14px;font-size:16px;}
+
+  /* SERVICES */
+  .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .service-card{background:#fff;border:1px solid #E2E8F0;border-radius:16px;padding:32px;transition:.3s;position:relative;overflow:hidden;opacity:0;transform:translateY(30px);}
+  .service-card.show{animation:fadeUp .6s forwards;}
+  .service-card:hover{transform:translateY(-8px);border-color:var(--indigo);box-shadow:0 20px 40px rgba(79,70,229,.12);}
+  .service-icon{width:52px;height:52px;border-radius:12px;background:linear-gradient(135deg,var(--indigo),var(--indigo-dark));display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:20px;}
+  .service-card h3{font-size:19px;font-weight:700;margin-bottom:10px;color:var(--dark);}
+  .service-card p{font-size:14px;color:var(--muted);line-height:1.6;margin-bottom:16px;}
+  .service-card a{font-size:13px;font-weight:600;color:var(--orange);}
+
+  /* CTA BANNER */
+  .cta-banner{background:linear-gradient(120deg,var(--indigo),var(--indigo-dark));border-radius:24px;padding:60px;text-align:center;position:relative;overflow:hidden;}
+  .cta-banner h2{color:#fff;font-size:32px;margin-bottom:14px;}
+  .cta-banner p{color:#C7D2FE;margin-bottom:28px;font-size:16px;}
+  .cta-banner .btn-primary{background:var(--orange);}
+
+  /* FOOTER */
+  footer{background:var(--dark);color:#94A3B8;padding:60px 0 30px;margin-top:60px;}
+  .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px;margin-bottom:40px;}
+  footer h4{color:#fff;font-size:14px;margin-bottom:16px;}
+  footer ul{list-style:none;}
+  footer li{margin-bottom:10px;font-size:14px;}
+  footer li a:hover{color:var(--orange);}
+  .footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:24px;text-align:center;font-size:13px;}
+
+  @media(max-width:860px){
+    .services-grid{grid-template-columns:1fr;}
+    .stats-grid{grid-template-columns:repeat(2,1fr);}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+    .nav-links{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="wrap">
+    <div class="logo"><span class="dot"></span>Farh Marketer</div>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+    <a href="#book" class="nav-cta">Book consultation</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="blob blob1"></div>
+  <div class="blob blob2"></div>
+  <div class="wrap hero-inner">
+    <span class="eyebrow">● 5 years turning ad spend into revenue</span>
+    <h1>Marketing that performs.<br>Not marketing that <span>guesses.</span></h1>
+    <p>Farh Marketer builds SEO, paid ads, and brand systems that compound — backed by five years of campaigns that actually moved revenue.</p>
+    <div class="hero-ctas">
+      <a href="#book" class="btn-primary">Book a free consultation</a>
+      <a href="#services" class="btn-outline">View services</a>
+    </div>
+  </div>
+
+  <div class="ticker">
+    <div class="ticker-track" id="ticker">
+      <!-- items injected by JS, duplicated for seamless loop -->
+    </div>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="wrap stats-grid">
+    <div><div class="stat-num" data-target="5">0</div><div class="stat-label">Years experience</div></div>
+    <div><div class="stat-num" data-target="120">0</div><div class="stat-label">Clients served</div></div>
+    <div><div class="stat-num" data-target="340">0</div><div class="stat-label">Campaigns run</div></div>
+    <div><div class="stat-num"><span data-target="3.4" data-decimal="1">0</span>x</div><div class="stat-label">Avg. ROAS lift</div></div>
+  </div>
+</section>
+
+<section class="section" id="services">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-eyebrow">What I do</span>
+      <h2>Full-funnel growth, handled</h2>
+      <p>Strategy, execution, and reporting — one person accountable for the whole campaign, not six handoffs.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card"><div class="service-icon">🔍</div><h3>SEO</h3><p>Technical audits, content strategy, and link building that moves you up page one — measurably.</p><a href="#">Learn more →</a></div>
+      <div class="service-card"><div class="service-icon">📣</div><h3>Paid ads</h3><p>Meta and Google campaigns built around a real target CPA, not vanity impressions.</p><a href="#">Learn more →</a></div>
+      <div class="service-card"><div class="service-icon">🎨</div><h3>Branding</h3><p>Visual identity and messaging that makes the rest of your marketing easier to sell.</p><a href="#">Learn more →</a></div>
+      <div class="service-card"><div class="service-icon">📱</div><h3>Social media</h3><p>Content calendars and community management that build an audience, not just a feed.</p><a href="#">Learn more →</a></div>
+      <div class="service-card"><div class="service-icon">💻</div><h3>Web development</h3><p>Fast, conversion-focused websites — the same sites you're looking at right now.</p><a href="#">Learn more →</a></div>
+      <div class="service-card"><div class="service-icon">✍️</div><h3>Content marketing</h3><p>Blog, email, and video content that compounds organic traffic over time.</p><a href="#">Learn more →</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="book">
+  <div class="wrap">
+    <div class="cta-banner">
+      <h2>Ready to grow your brand?</h2>
+      <p>Book a free 15-minute discovery call — no pitch deck, just a straight answer on what would move the needle for you.</p>
+      <a href="#" class="btn-primary">Book free consultation</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="logo" style="margin-bottom:14px;"><span class="dot"></span>Farh Marketer</div>
+        <p style="font-size:14px;line-height:1.6;max-width:280px;">Digital marketing and web development, run by one person who's shipped both sides for five years.</p>
+      </div>
+      <div><h4>Company</h4><ul><li><a href="#">About</a></li><li><a href="#">Portfolio</a></li><li><a href="#">Blog</a></li></ul></div>
+      <div><h4>Services</h4><ul><li><a href="#">SEO</a></li><li><a href="#">Paid ads</a></li><li><a href="#">Web dev</a></li></ul></div>
+      <div><h4>Contact</h4><ul><li><a href="#">hello@farhmarketer.com</a></li><li><a href="#">Book a call</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">© 2026 Farh Marketer. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+  // Nav scroll state
+  window.addEventListener('scroll',()=>{
+    document.getElementById('nav').classList.toggle('scrolled', window.scrollY>40);
+  });
+
+  // Live ticker content (signature element)
+  const tickerData = [
+    {label:'CTR', val:'4.8%', dir:'up'},
+    {label:'CPC', val:'$0.62', dir:'down'},
+    {label:'ROAS', val:'3.4x', dir:'up'},
+    {label:'Organic traffic', val:'+128%', dir:'up'},
+    {label:'CPA', val:'$11.20', dir:'down'},
+    {label:'Conversion rate', val:'6.1%', dir:'up'},
+  ];
+  const track = document.getElementById('ticker');
+  function renderTicker(){
+    let html='';
+    for(let i=0;i<2;i++){
+      tickerData.forEach(t=>{
+        const arrow = t.dir==='up' ? '▲' : '▼';
+        const cls = t.dir==='up' ? 'up' : 'down';
+        html += `<div class="ticker-item">${t.label} <b>${t.val}</b> <span class="${cls}">${arrow}</span></div>`;
+      });
+    }
+    track.innerHTML = html;
+  }
+  renderTicker();
+
+  // Counter animation on scroll into view
+  const counters = document.querySelectorAll('.stat-num, .stat-num span');
+  const nums = document.querySelectorAll('[data-target]');
+  const counterObserver = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        const el = entry.target;
+        const target = parseFloat(el.dataset.target);
+        const decimals = parseInt(el.dataset.decimal || 0);
+        let cur = 0;
+        const step = target / 60;
+        const tick = ()=>{
+          cur += step;
+          if(cur >= target){ el.textContent = target.toFixed(decimals); return; }
+          el.textContent = cur.toFixed(decimals);
+          requestAnimationFrame(tick);
+        };
+        tick();
+        counterObserver.unobserve(el);
+      }
+    });
+  },{threshold:0.6});
+  nums.forEach(n=>counterObserver.observe(n));
+
+  // Service card reveal on scroll
+  const cards = document.querySelectorAll('.service-card');
+  const cardObserver = new IntersectionObserver((entries)=>{
+    entries.forEach((entry,i)=>{
+      if(entry.isIntersecting){
+        setTimeout(()=>entry.target.classList.add('show'), i%3*100);
+        cardObserver.unobserve(entry.target);
+      }
+    });
+  },{threshold:0.15});
+  cards.forEach(c=>cardObserver.observe(c));
+</script>
+
+</body>
+</html>
